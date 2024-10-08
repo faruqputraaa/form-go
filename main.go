@@ -26,16 +26,16 @@ type Mahasiswa struct {
 
 // Koneksi ke database MySQL menggunakan GORM
 func connectDB() (*gorm.DB, error) {
-	dsn := "root:my-secret-pw@tcp(127.0.0.1:3333)/?charset=utf8mb4&parseTime=True&loc=Local" // Ganti dengan user, password, dan nama database-mu
+	dsn := "admin:form-golang@tcp(db-form.cpmg48oo2ccs.ap-southeast-1.rds.amazonaws.com:3306)/?charset=utf8mb4&parseTime=True&loc=Local" // Ganti dengan kredensial RDS Anda
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		return nil, err
 	}
 
-		// Buat database jika belum ada
-		db.Exec("CREATE DATABASE IF NOT EXISTS mahasiswa")
+	// Buat database jika belum ada
+	db.Exec("CREATE DATABASE IF NOT EXISTS mahasiswa")
 
-		db.Exec("USE mahasiswa")
+	db.Exec("USE mahasiswa")
 
 	// Auto migrate tabel mahasiswa
 	db.AutoMigrate(&Mahasiswa{})

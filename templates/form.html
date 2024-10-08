@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/style.css">
+    <title>Document</title>
+</head>
+<body>
+<form action="/submit" method="post" onsubmit="return validateForm()">
+    <label for="nim">NIM:</label>
+    <input type="text" id="nim" name="nim" required><br><br>
+    <label for="nama">Nama:</label>
+    <input type="text" id="nama" name="nama" required><br><br>
+    <label for="tanggal_lahir">Tanggal Lahir:</label>
+    <input type="date" id="tanggal_lahir" name="tanggal_lahir" required><br><br>
+    <label for="nomor_telepon">Nomor Telepon:</label>
+    <input type="text" id="nomor_telepon" name="nomor_telepon" required><br><br>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+    <label for="fakultas">Fakultas:</label>
+    <select id="fakultas" name="fakultas" required>
+        <option value="">Pilih Fakultas</option>
+        <option value="Teknik">Teknik</option>
+        <option value="Ekonomi">Ekonomi</option>
+        <option value="Hukum">Hukum</option>
+        <option value="Kedokteran">Kedokteran</option>
+    </select><br><br>
+    <label for="prodi">Prodi:</label>
+    <select id="prodi" name="prodi" required>
+        <option value="">Pilih Prodi</option>
+        <option value="Teknik Informatika">Teknik Informatika</option>
+        <option value="Manajemen">Manajemen</option>
+        <option value="Hukum">Hukum</option>
+        <option value="Kedokteran">Kedokteran</option>
+    </select><br><br>
+    <label for="semester">Semester:</label>
+    <input type="number" id="semester" name="semester" required><br><br>
+    <label for="jenis_kelamin">Jenis Kelamin:</label>
+    <input type="radio" id="laki-laki" name="jenis_kelamin" value="Laki-laki" required>
+    <label for="laki-laki">Laki-laki</label>
+    <input type="radio" id="perempuan" name="jenis_kelamin" value="Perempuan">
+    <label for="perempuan">Perempuan</label><br><br>
+    <input type="submit" value="Submit">
+</form>
+
+<script>
+    function validateForm() {
+        let nim = document.getElementById('nim').value;
+        let nama = document.getElementById('nama').value;
+        let tanggal_lahir = document.getElementById('tanggal_lahir').value;
+        let nomor_telepon = document.getElementById('nomor_telepon').value;
+        let email = document.getElementById('email').value;
+        let fakultas = document.getElementById('fakultas').value;
+        let prodi = document.getElementById('prodi').value;
+        let semester = document.getElementById('semester').value;
+        let jenis_kelamin = document.querySelector('input[name="jenis_kelamin"]:checked').value;
+
+        if (!nim || !nama || !tanggal_lahir || !nomor_telepon || !email || !fakultas || !prodi || !semester || !jenis_kelamin) {
+            alert('Tidak boleh ada field yang kosong!');
+            return false;
+        }
+
+        if (!/^\d{12}$/.test(nim)) {
+            alert('NIM harus berisi 12 angka!');
+            return false;
+        }
+
+        if (!/^\d+$/.test(nomor_telepon)) {
+            alert('Nomor telepon harus berupa angka!');
+            return false;
+        }
+
+        if (!/^\d+$/.test(semester)) {
+            alert('Semester harus berupa angka!');
+            return false;
+        }
+
+        return true;
+    }
+</script>
+</body>
+</html>
